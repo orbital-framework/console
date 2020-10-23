@@ -46,12 +46,12 @@ abstract class Command {
         foreach( $commands as $command => $tasks ){
             foreach( $tasks as $task ){
 
-                $line = "$command";
-                $line .= " -> ";
+                $line = $command;
+                $line .= ' -> ';
                 $line .= $task['callback'];
 
                 if( $task['times'] > 1 ){
-                    $line .= " (runs ". $task['times']. " times)";
+                    $line .= ' (self runs '. $task['times']. ' times)';
                 }
 
                 Console::print($line);
@@ -74,12 +74,12 @@ abstract class Command {
         }
 
         if( !$command ){
-            Console::eprint("Command not found");
+            Console::eprint('Command is required. Use the command "help" to see the available commands.');
             exit;
         }
 
         if( !isset(self::$commands[ $command ]) ){
-            Console::eprint("Command not exists: ". $command);
+            Console::eprint('Command not exists: '. $command. '.');
             exit;
         }
 
