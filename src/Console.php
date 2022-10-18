@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Orbital\Console;
 
@@ -9,7 +10,7 @@ abstract class Console {
      * @param string $message
      * @return void
      */
-    public static function print($message){
+    public static function print(string $message): void {
         echo $message. PHP_EOL;
     }
 
@@ -18,7 +19,7 @@ abstract class Console {
      * @param string $message
      * @return void
      */
-    public static function eprint($message){
+    public static function ePrint(string $message): void {
         fwrite(STDERR, $message. PHP_EOL);
     }
 

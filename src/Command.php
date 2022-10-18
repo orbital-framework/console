@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Orbital\Console;
 
@@ -18,10 +19,10 @@ abstract class Command {
      * OBS. Command can accept more than one callback
      * @param string $command
      * @param string $callback
-     * @param mixed $times
+     * @param int $times
      * @return void
      */
-    public static function on($command, $callback, $times = 1){
+    public static function on(string $command, string $callback, int $times = 1): void {
 
         if( !isset(self::$commands[ $command ]) ){
             self::$commands[ $command ] = array();
@@ -38,7 +39,7 @@ abstract class Command {
      * Print registered commands
      * @return void
      */
-    public static function printCommands(){
+    public static function printCommands(): void {
 
         $commands = self::$commands;
         ksort($commands);
@@ -66,7 +67,7 @@ abstract class Command {
      * @param string $command
      * @return void
      */
-    public static function run($command = ''){
+    public static function run(string $command = ''): void {
 
         if( $command === 'help' ){
             self::printCommands();
@@ -74,12 +75,12 @@ abstract class Command {
         }
 
         if( !$command ){
-            Console::eprint('Command is required. Use the command "help" to see the available commands.');
+            Console::ePrint('Command is required. Use the command "help" to see the available commands.');
             exit;
         }
 
         if( !isset(self::$commands[ $command ]) ){
-            Console::eprint('Command not exists: '. $command. '.');
+            Console::ePrint('Command not exists: '. $command. '.');
             exit;
         }
 
@@ -94,7 +95,7 @@ abstract class Command {
                 }
 
             }catch( Exception $e ){
-                Console::eprint( $e->getMessage() );
+                Console::ePrint( $e->getMessage() );
             }
 
         }
